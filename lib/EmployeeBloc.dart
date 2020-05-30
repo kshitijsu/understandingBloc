@@ -25,7 +25,7 @@ class EmployeeBloc {
 
   final _employeeSalaryDeccrementStreamContorller =
       StreamController<Employee>();
-}
+
 
 //TODO: Stream Sink getter
   // getters
@@ -46,7 +46,7 @@ EmployeeBloc(){
   _employeeListStreamController.add(_employeeList);
 _employeeSalaryIncrementStreamContorller.stream.listen(_incrementSalary);
 _employeeSalaryDecrementStreamContorller.stream.listen(_decrementSalary);
-
+}
 
 //TODO: Core fuctions
 
@@ -77,6 +77,7 @@ void dispose(){
   _employeeListStreamController.close(); 
 }
   
+
 }
 
 

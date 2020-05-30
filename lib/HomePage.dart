@@ -24,10 +24,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('Employee App'),
       ),
-      body: Conatiner(
+      body: Container(
         child: StreamBuilder<List<Employee>>(
           stream: _employeeBloc.employeeListStream,
-          builder: (BuilContext context, AsynSnapshot<List<Employee>> snapshot){
+          builder: (BuildContext context, AsyncSnapshot<List<Employee>> snapshot){
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder:(context, index){
@@ -53,12 +53,31 @@ class _HomePageState extends State<HomePage> {
                         ),Text(
                           'Rs. ${snapshot.data[index].salary}',
                           style:TextStyle(fontSize:16.0),
-                        ),]
+                        ),
+                        Container(
+                          child: IconButton(
+                            icon: Icon(Icons.thumb_up),
+                            color: Colors.green,
+                            onPressed:(){
+                              _employeeBloc.employeeSalaryIncrement.add(snapshot.data[index]);
+                            },
+                            )
+                        ),
+                        Container(
+                          child: IconButton(
+                            icon: Icon(Icons.thumb_down),
+                            color: Colors.red,
+                            onPressed:(){
+                              _employeeBloc.employeeSalaryDecrement.add(snapshot.data[index]);
+                            },
+                            )
+                        ),
+                        ],
                         )
                       )
                     ]
                   )
-                )
+                );
               }
             );
           },
